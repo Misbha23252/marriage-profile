@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Marriage Proposal - Misbha K">
+<title>Marriage Proposal | Misbha K</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  --cream:#f8f5ee;
+  --paper:#fffdf8;
+  --green:#174c3c;
+  --green-dark:#10392d;
+  --gold:#b49355;
+  --gold-light:#dfcfaa;
+  --text:#26332e;
+  --muted:#6f7873;
+  --line:#e8e1d3;
+  --shadow:0 18px 50px rgba(23,76,60,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--cream);color:var(--text);
+  font-family:Inter,Arial,sans-serif;line-height:1.7;
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1080px,92%);margin:auto}
+.hero{
+  min-height:92vh;display:flex;align-items:center;position:relative;
+  overflow:hidden;background:
+  radial-gradient(circle at 10% 20%, rgba(180,147,85,.13), transparent 28%),
+  linear-gradient(135deg,var(--green-dark),var(--green));
+  color:white;
+}
+.hero:before,.hero:after{
+  content:"";position:absolute;border:1px solid rgba(223,207,170,.3);
+  border-radius:50%;width:420px;height:420px;
+}
+.hero:before{right:-180px;top:-130px}
+.hero:after{left:-280px;bottom:-250px}
+.hero-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center;position:relative;z-index:1}
+.kicker{letter-spacing:4px;text-transform:uppercase;color:var(--gold-light);font-size:12px;font-weight:600}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif}
+h1{font-size:clamp(60px,9vw,105px);line-height:.85;margin:18px 0}
+.hero p{max-width:520px;color:#e8eee9;font-size:16px}
+.hero-photo{
+  aspect-ratio:4/5;border-radius:180px 180px 18px 18px;
+  background:linear-gradient(145deg,#d8d0c1,#eee9df);
+  border:7px solid rgba(255,255,255,.9);
+  box-shadow:0 25px 70px rgba(0,0,0,.22);
+  display:flex;align-items:center;justify-content:center;
+  color:#777;font-size:13px;text-align:center;padding:25px;
+  overflow:hidden;
+}
+.hero-photo img{width:100%;height:100%;object-fit:cover}
+.upload-photo{cursor:pointer;position:relative}
+.upload-photo:hover{transform:translateY(-2px)}
+.upload-plus,.upload-slot b{font-family:Inter,Arial,sans-serif;font-size:34px;font-weight:400;line-height:1;color:var(--gold)}
+.upload-slot{cursor:pointer;transition:transform .25s,box-shadow .25s}
+.upload-slot:hover{transform:translateY(-3px);box-shadow:0 14px 35px rgba(23,76,60,.15)}
+.upload-slot span{color:var(--muted);text-align:center;font-size:13px}
+.upload-slot img{width:100%;height:100%;object-fit:cover}
+.photo-note{text-align:center;color:var(--muted);font-size:12px;margin-top:18px}
+.photo-placeholder{opacity:.7}
+.nav{
+  position:sticky;top:0;z-index:20;background:rgba(255,253,248,.94);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
+}
+.nav-inner{height:66px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:"Cormorant Garamond",serif;font-size:25px;color:var(--green);font-weight:700}
+.nav-links{display:flex;gap:28px;font-size:13px;color:var(--muted)}
+.nav-links a:hover{color:var(--green)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+.nav-toggle span{display:block;width:24px;height:2px;background:var(--green);border-radius:2px;transition:transform .3s,opacity .3s}
+.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0}
+.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+section{padding:95px 0}
+.section-head{text-align:center;margin-bottom:45px}
+.section-head .kicker{color:var(--gold)}
+h2{font-size:52px;color:var(--green);margin:7px 0}
+.subtitle{color:var(--muted);max-width:620px;margin:auto}
+.details{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{
+  background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  padding:24px 26px;box-shadow:var(--shadow);
+}
+.detail{display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding:10px 0}
+.detail:last-child{border-bottom:0}
+.label{color:var(--muted);font-size:13px}.value{text-align:right;font-weight:600;color:var(--green)}
+.family-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.family-card{text-align:center;padding:32px}
+.family-icon{
+  width:54px;height:54px;border-radius:50%;display:grid;place-items:center;
+  margin:0 auto 15px;background:#f1eadb;color:var(--green);font-family:serif;font-size:23px;
+}
+.family-card h3{font-size:29px;color:var(--green);margin:5px}
+.family-card p{margin:2px;color:var(--muted);font-size:14px}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.gallery-item{
+  aspect-ratio:1/1;border-radius:16px;overflow:hidden;background:#e9e3d8;
+  display:flex;align-items:center;justify-content:center;color:#777;font-size:12px;
+}
+.gallery-item:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:1/1}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.gallery-item:hover img{transform:scale(1.04)}
+.values{
+  background:var(--green);color:white;text-align:center;position:relative;overflow:hidden
+}
+.values h2{color:white}
+.values .subtitle{color:#dce7e0}
+.quote{font-family:"Cormorant Garamond",serif;font-size:32px;max-width:780px;margin:28px auto 0;color:var(--gold-light)}
+.contact{text-align:center}
+.contact-box{max-width:650px;margin:auto;padding:45px}
+.btn{
+  display:inline-block;margin-top:22px;background:var(--green);color:white;
+  padding:13px 25px;border-radius:30px;font-size:13px;font-weight:600;
+}
+footer{padding:35px 0;text-align:center;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
+/* ---- Tablet ---- */
+@media(max-width:980px){
+  .container{width:92%}
+  .hero-inner{gap:45px}
+  h1{font-size:clamp(52px,10vw,86px)}
+  h2{font-size:46px}
+  .gallery{grid-template-columns:repeat(3,1fr)}
+}
+
+/* ---- Mobile ---- */
+@media(max-width:760px){
+  .nav-toggle{display:flex}
+  .nav-links{
+    position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;gap:0;
+    background:rgba(255,253,248,.98);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);box-shadow:var(--shadow);
+    transform:translateY(-10px);opacity:0;pointer-events:none;
+    transition:transform .25s,opacity .25s;
+  }
+  .nav-links a{padding:13px 24px;border-top:1px solid var(--line)}
+  .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
+  .hero{min-height:auto;padding:75px 0}
+  .hero-inner{grid-template-columns:1fr;gap:40px;text-align:center}
+  .hero p{margin:0 auto}
+  .hero-photo{max-width:330px;width:100%;margin:auto}
+  h2{font-size:42px}
+  section{padding:70px 0}
+  .details,.family-grid{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .gallery-item:first-child{grid-column:span 2}
+  .quote{font-size:27px}
+  .edit-savebar .hint{display:none}
+  .edit-controls{right:14px;bottom:14px}
+  .edit-fab{padding:12px 18px;font-size:12px}
+}
+
+/* ---- Small phones ---- */
+@media(max-width:460px){
+  .container{width:90%}
+  h1{font-size:clamp(46px,14vw,64px)}
+  h2{font-size:34px}
+  section{padding:55px 0}
+  .card{padding:20px}
+  .family-card{padding:24px}
+  .contact-box{padding:32px 22px}
+  .quote{font-size:23px}
+  .gallery{grid-template-columns:1fr}
+  .gallery-item:first-child{grid-column:span 1}
+  .nav-inner{height:58px}
+  .logo{font-size:22px}
+  .edit-savebar{gap:8px;padding:11px 12px}
+  .edit-savebar .photo-btn{padding:9px 14px}
+}
+
+.photo-editor{width:100%;max-width:390px;margin:auto}
+.photo-actions{display:flex;justify-content:center;gap:10px;margin-top:12px}
+.photo-actions.compact{margin-top:8px}
+.photo-btn{border:0;border-radius:20px;padding:8px 15px;font:600 12px Inter,Arial,sans-serif;cursor:pointer}
+.save-btn{background:var(--green);color:white}
+.remove-btn{background:#eee7db;color:#7a4a3a}
+.save-btn:hover,.remove-btn:hover{opacity:.88}
+.save-status{text-align:center;color:var(--muted);font-size:11px;margin-top:7px;min-height:18px}
+.gallery-card{min-width:0}
+.gallery-card .gallery-item{width:100%}
+
+/* ---- Eye icon: master toggle for all editing features ---- */
+.admin-eye{
+  position:fixed;left:14px;top:12px;z-index:70;
+  width:36px;height:36px;border-radius:50%;
+  display:grid;place-items:center;cursor:pointer;
+  background:rgba(248,245,238,.55);color:var(--green);
+  border:1px solid rgba(23,76,60,.22);
+  box-shadow:0 4px 14px rgba(23,76,60,.15);
+  opacity:.4;transition:opacity .25s,background .25s,transform .2s;
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+}
+.admin-eye:hover{opacity:.92;transform:translateY(-1px)}
+.admin-eye.active{opacity:.95;background:rgba(180,147,85,.28);color:var(--green-dark)}
+.admin-eye svg{width:20px;height:20px;display:block}
+
+/* Editing tools stay hidden until the eye is clicked */
+.photo-actions,.save-status,.edit-controls{display:none}
+body.admin-on .photo-actions{display:flex}
+body.admin-on .save-status{display:block}
+body.admin-on .edit-controls{display:block}
+/* In view mode empty photo slots look clean and are not clickable */
+body:not(.admin-on) .upload-photo,
+body:not(.admin-on) .upload-slot{pointer-events:none;cursor:default}
+body:not(.admin-on) .upload-photo:hover,
+body:not(.admin-on) .upload-slot:hover{transform:none;box-shadow:none}
+body:not(.admin-on) .photo-placeholder,
+body:not(.admin-on) .upload-slot > span{visibility:hidden}
+
+/* ---- Text editing mode ---- */
+.edit-controls{position:fixed;right:18px;bottom:18px;z-index:60}
+.edit-fab{
+  border:0;border-radius:30px;padding:13px 22px;cursor:pointer;
+  background:var(--green);color:#fff;font:600 13px Inter,Arial,sans-serif;
+  box-shadow:0 12px 30px rgba(23,76,60,.3);
+}
+.edit-fab:hover{opacity:.9}
+.edit-savebar{
+  position:fixed;left:0;right:0;bottom:0;z-index:59;display:none;
+  gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;
+  background:var(--green-dark);color:#fff;padding:13px 16px;
+  box-shadow:0 -8px 24px rgba(0,0,0,.22);font-size:13px;
+}
+.edit-savebar.on{display:flex}
+.edit-savebar .hint{color:#dce7e0}
+.edit-savebar .save-status{color:var(--gold-light);margin:0}
+body.edit-on{padding-bottom:70px}
+body.edit-on [data-edit-key]{
+  outline:1px dashed var(--gold);outline-offset:3px;border-radius:4px;
+  cursor:text;transition:background .2s;
+}
+body.edit-on [data-edit-key]:hover{background:rgba(180,147,85,.10)}
+body.edit-on [data-edit-key]:focus{outline:2px solid var(--gold);background:rgba(180,147,85,.15)}
+</style>
+</head>
+<body>
+
+<!-- Eye icon: reveals / hides all editing tools (top-left) -->
+<button type="button" class="admin-eye" id="adminEye" aria-label="Toggle editing tools" title="Show editing tools">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12Z"/>
+    <circle cx="12" cy="12" r="3"/>
+  </svg>
+</button>
+
+<header class="hero" id="home">
+  <div class="container hero-inner">
+    <div>
+      <div class="kicker" data-edit-key="hero-kicker">Marriage Proposal</div>
+      <h1 data-edit-key="hero-name">Misbha K</h1>
+      <p data-edit-key="hero-intro">
+        A simple introduction to help families get to know me and my family.
+        Built around faith, family values, mutual respect and understanding.
+      </p>
+    </div>
+
+    <!-- Replace the placeholder below with your main photo -->
+    <div class="photo-editor">
+      <label class="hero-photo upload-photo" for="mainPhoto">
+        <input id="mainPhoto" type="file" accept="image/*" hidden>
+        <div class="photo-placeholder"><span class="upload-plus">+</span><br>ADD MAIN PHOTO<br><small>Click to choose a photo</small></div>
+      </label>
+      <div class="photo-actions">
+        <button type="button" class="photo-btn save-btn" id="saveMainPhoto">Save Photo</button>
+        <button type="button" class="photo-btn remove-btn" id="removeMainPhoto">Remove</button>
+      </div>
+      <div class="save-status" id="mainPhotoStatus">No saved photo</div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="#home">Misbha K</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#family">Family</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#values">Values</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker" data-edit-key="about-kicker">Personal Details</div>
+      <h2 data-edit-key="about-title">About Me</h2>
+      <p class="subtitle" data-edit-key="about-subtitle">A concise profile with the essential details for a marriage proposal.</p>
+    </div>
+    <div class="details">
+      <div class="card">
+        <div class="detail"><span class="label" data-edit-key="about-l1">Name</span><span class="value" data-edit-key="about-v1">Misbha K</span></div>
+        <div class="detail"><span class="label" data-edit-key="about-l2">Date of Birth</span><span class="value" data-edit-key="about-v2">28 October 1999</span></div>
+        <div class="detail"><span class="label" data-edit-key="about-l3">Age</span><span class="value" data-edit-key="about-v3">26 Years</span></div>
+        <div class="detail"><span class="label" data-edit-key="about-l4">Height</span><span class="value" data-edit-key="about-v4">5'7"</span></div>
+        <div class="detail"><span class="label" data-edit-key="about-l5">Complexion</span><span class="value" data-edit-key="about-v5">Dusty Brown</span></div>
+      </div>
+      <div class="card">
+        <div class="detail"><span class="label" data-edit-key="about-l6">Religion</span><span class="value" data-edit-key="about-v6">Islam (Muslim)</span></div>
+        <div class="detail"><span class="label" data-edit-key="about-l7">Qualification</span><span class="value" data-edit-key="about-v7">B.E. – Electrical & Electronics</span></div>
+        <div class="detail"><span class="label" data-edit-key="about-l8">Profession</span><span class="value" data-edit-key="about-v8">Software Engineer</span></div>
+        <div class="detail"><span class="label" data-edit-key="about-l9">Organization</span><span class="value" data-edit-key="about-v9">Sonata Software Ltd.</span></div>
+        <div class="detail"><span class="label" data-edit-key="about-l10">Native Place</span><span class="value" data-edit-key="about-v10">Siruguppa</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="family" style="background:#f1ede4">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker" data-edit-key="family-kicker">Family Details</div>
+      <h2 data-edit-key="family-title">My Family</h2>
+      <p class="subtitle" data-edit-key="family-subtitle">A close-knit family with strong relationships and traditional values.</p>
+    </div>
+    <div class="family-grid">
+      <div class="card family-card">
+        <div class="family-icon">F</div>
+        <h3 data-edit-key="fam1-name">Farooq K</h3>
+        <p data-edit-key="fam1-role">Father</p><p data-edit-key="fam1-desc">Goods Transport Business</p>
+      </div>
+      <div class="card family-card">
+        <div class="family-icon">M</div>
+        <h3 data-edit-key="fam2-name">Balkish Banu K</h3>
+        <p data-edit-key="fam2-role">Mother</p><p data-edit-key="fam2-desc">Homemaker</p>
+      </div>
+      <div class="card family-card">
+        <div class="family-icon">S</div>
+        <h3 data-edit-key="fam3-name">Afroz Banu</h3>
+        <p data-edit-key="fam3-role">Elder Sister • Married</p><p data-edit-key="fam3-desc">Husband: A. Gouse — NMDC Employee</p>
+      </div>
+      <div class="card family-card">
+        <div class="family-icon">B</div>
+        <h3 data-edit-key="fam4-name">Gouse K</h3>
+        <p data-edit-key="fam4-role">Elder Brother • Married</p><p data-edit-key="fam4-desc">AC Technician</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker" data-edit-key="gallery-kicker">Photo Gallery</div>
+      <h2 data-edit-key="gallery-title">Moments</h2>
+      <p class="subtitle" data-edit-key="gallery-subtitle">Add a few selected photographs here. The layout automatically adapts to mobile screens.</p>
+    </div>
+    <div class="gallery" id="galleryGrid">
+      <div class="gallery-card">
+        <label class="gallery-item upload-slot" for="galleryPhoto1">
+          <input id="galleryPhoto1" type="file" accept="image/*" hidden>
+          <span><b>+</b> Add Photo</span>
+        </label>
+        <div class="photo-actions compact">
+          <button type="button" class="photo-btn save-btn gallery-save" data-index="1">Save</button>
+          <button type="button" class="photo-btn remove-btn gallery-remove" data-index="1">Remove</button>
+        </div>
+        <div class="save-status gallery-status" id="galleryStatus1">Not saved</div>
+      </div>
+      <div class="gallery-card">
+        <label class="gallery-item upload-slot" for="galleryPhoto2">
+          <input id="galleryPhoto2" type="file" accept="image/*" hidden>
+          <span><b>+</b> Add Photo</span>
+        </label>
+        <div class="photo-actions compact">
+          <button type="button" class="photo-btn save-btn gallery-save" data-index="2">Save</button>
+          <button type="button" class="photo-btn remove-btn gallery-remove" data-index="2">Remove</button>
+        </div>
+        <div class="save-status gallery-status" id="galleryStatus2">Not saved</div>
+      </div>
+      <div class="gallery-card">
+        <label class="gallery-item upload-slot" for="galleryPhoto3">
+          <input id="galleryPhoto3" type="file" accept="image/*" hidden>
+          <span><b>+</b> Add Photo</span>
+        </label>
+        <div class="photo-actions compact">
+          <button type="button" class="photo-btn save-btn gallery-save" data-index="3">Save</button>
+          <button type="button" class="photo-btn remove-btn gallery-remove" data-index="3">Remove</button>
+        </div>
+        <div class="save-status gallery-status" id="galleryStatus3">Not saved</div>
+      </div>
+      <div class="gallery-card">
+        <label class="gallery-item upload-slot" for="galleryPhoto4">
+          <input id="galleryPhoto4" type="file" accept="image/*" hidden>
+          <span><b>+</b> Add Photo</span>
+        </label>
+        <div class="photo-actions compact">
+          <button type="button" class="photo-btn save-btn gallery-save" data-index="4">Save</button>
+          <button type="button" class="photo-btn remove-btn gallery-remove" data-index="4">Remove</button>
+        </div>
+        <div class="save-status gallery-status" id="galleryStatus4">Not saved</div>
+      </div>
+      <div class="gallery-card">
+        <label class="gallery-item upload-slot" for="galleryPhoto5">
+          <input id="galleryPhoto5" type="file" accept="image/*" hidden>
+          <span><b>+</b> Add Photo</span>
+        </label>
+        <div class="photo-actions compact">
+          <button type="button" class="photo-btn save-btn gallery-save" data-index="5">Save</button>
+          <button type="button" class="photo-btn remove-btn gallery-remove" data-index="5">Remove</button>
+        </div>
+        <div class="save-status gallery-status" id="galleryStatus5">Not saved</div>
+      </div>
+      <div class="gallery-card">
+        <label class="gallery-item upload-slot" for="galleryPhoto6">
+          <input id="galleryPhoto6" type="file" accept="image/*" hidden>
+          <span><b>+</b> Add Photo</span>
+        </label>
+        <div class="photo-actions compact">
+          <button type="button" class="photo-btn save-btn gallery-save" data-index="6">Save</button>
+          <button type="button" class="photo-btn remove-btn gallery-remove" data-index="6">Remove</button>
+        </div>
+        <div class="save-status gallery-status" id="galleryStatus6">Not saved</div>
+      </div>
+    </div>
+    <p class="photo-note">Click any “Add Photo” box to select a picture from your device.</p>
+  </div>
+</section>
+
+<section id="values" class="values">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker" data-edit-key="values-kicker">Family Background</div>
+      <h2 data-edit-key="values-title">Faith • Family • Understanding</h2>
+      <p class="subtitle" data-edit-key="values-subtitle">
+        We are a close-knit family from Siruguppa, Karnataka, who value faith,
+        mutual respect, understanding and strong family relationships.
+      </p>
+    </div>
+    <div class="quote" data-edit-key="values-quote">“A good marriage is built on faith, respect, friendship and understanding.”</div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker" data-edit-key="contact-kicker">Family Contact</div>
+      <h2 data-edit-key="contact-title">Get in Touch</h2>
+    </div>
+    <div class="card contact-box">
+      <p data-edit-key="contact-address">
+        <strong>Siruguppa, Karnataka</strong><br>
+        1st Ward, Near Vallur Masjid,<br>
+        Tippu Sulthan Circle, Siruguppa
+      </p>
+      <!-- Add phone/WhatsApp details here only if you want them public -->
+      <!-- <a class="btn" href="https://wa.me/91XXXXXXXXXX">Contact on WhatsApp</a> -->
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span data-edit-key="footer-text">Marriage Proposal • Misbha K • Siruguppa</span>
+</footer>
+
+<!-- Text editing controls -->
+<div class="edit-controls">
+  <button type="button" class="edit-fab" id="editToggle">✎ Edit Text</button>
+</div>
+<div class="edit-savebar" id="editSaveBar">
+  <span class="hint">Edit mode on — click any text to change it.</span>
+  <button type="button" class="photo-btn save-btn" id="saveTexts">Save Changes</button>
+  <button type="button" class="photo-btn remove-btn" id="resetTexts">Reset All</button>
+  <button type="button" class="photo-btn remove-btn" id="exitEdit">Done</button>
+  <span class="save-status" id="editStatus"></span>
+</div>
+
+
+<script>
+const STORAGE_PREFIX = "misbha_marriage_photo_";
+
+function readSaved(key) {
+  try { return localStorage.getItem(STORAGE_PREFIX + key); }
+  catch(e) { return null; }
+}
+
+function writeSaved(key, value) {
+  try { localStorage.setItem(STORAGE_PREFIX + key, value); return true; }
+  catch(e) { alert("The browser could not save this photo. The image may be too large."); return false; }
+}
+
+function deleteSaved(key) {
+  try { localStorage.removeItem(STORAGE_PREFIX + key); }
+  catch(e) {}
+}
+
+function setImage(target, url) {
+  target.innerHTML = '<img src="' + url + '" alt="Selected photo">';
+  target.classList.add("has-photo");
+}
+
+function resetSlot(target, label) {
+  target.innerHTML = '<span><b>+</b> ' + label + '</span>';
+  target.classList.remove("has-photo");
+}
+
+function setupPhoto(inputId, target, saveButton, removeButton, status, key, label) {
+  const input = document.getElementById(inputId);
+
+  input.addEventListener("change", function() {
+    const file = this.files && this.files[0];
+    if (!file || !file.type.startsWith("image/")) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      setImage(target, e.target.result);
+      target.dataset.pending = e.target.result;
+      status.textContent = "Photo selected — click Save";
+    };
+    reader.readAsDataURL(file);
+  });
+
+  saveButton.addEventListener("click", function() {
+    const pending = target.dataset.pending;
+    if (!pending) {
+      status.textContent = "Choose a photo first";
+      return;
+    }
+    if (writeSaved(key, pending)) {
+      delete target.dataset.pending;
+      status.textContent = "✓ Saved in this browser";
+    }
+  });
+
+  removeButton.addEventListener("click", function() {
+    deleteSaved(key);
+    delete target.dataset.pending;
+    input.value = "";
+    resetSlot(target, label);
+    status.textContent = "Photo removed";
+  });
+
+  const saved = readSaved(key);
+  if (saved) {
+    setImage(target, saved);
+    status.textContent = "✓ Saved photo";
+  }
+}
+
+const mainTarget = document.querySelector(".hero-photo");
+setupPhoto(
+  "mainPhoto",
+  mainTarget,
+  document.getElementById("saveMainPhoto"),
+  document.getElementById("removeMainPhoto"),
+  document.getElementById("mainPhotoStatus"),
+  "main",
+  "ADD MAIN PHOTO"
+);
+
+for (let i = 1; i <= 6; i++) {
+  setupPhoto(
+    "galleryPhoto" + i,
+    document.querySelector("#galleryPhoto" + i).closest(".gallery-item"),
+    document.querySelector('.gallery-save[data-index="' + i + '"]'),
+    document.querySelector('.gallery-remove[data-index="' + i + '"]'),
+    document.getElementById("galleryStatus" + i),
+    "gallery-" + i,
+    "Add Photo"
+  );
+}
+
+/* ---------- Editable text for every section ---------- */
+const TEXT_PREFIX = "misbha_text_";
+const editableEls = document.querySelectorAll("[data-edit-key]");
+const editToggle  = document.getElementById("editToggle");
+const editSaveBar = document.getElementById("editSaveBar");
+const editStatus  = document.getElementById("editStatus");
+
+// Load any saved text on page open.
+editableEls.forEach(function(el){
+  const saved = localStorage.getItem(TEXT_PREFIX + el.dataset.editKey);
+  if (saved !== null) el.innerHTML = saved;
+});
+
+function setEditMode(on){
+  document.body.classList.toggle("edit-on", on);
+  editSaveBar.classList.toggle("on", on);
+  editToggle.style.display = on ? "none" : "inline-block";
+  editableEls.forEach(function(el){ el.contentEditable = on ? "true" : "false"; });
+  if (!on) editStatus.textContent = "";
+}
+
+editToggle.addEventListener("click", function(){ setEditMode(true); });
+document.getElementById("exitEdit").addEventListener("click", function(){ setEditMode(false); });
+
+document.getElementById("saveTexts").addEventListener("click", function(){
+  let count = 0;
+  editableEls.forEach(function(el){
+    try {
+      localStorage.setItem(TEXT_PREFIX + el.dataset.editKey, el.innerHTML.trim());
+      count++;
+    } catch(e){}
+  });
+  editStatus.textContent = "✓ Saved " + count + " items in this browser";
+});
+
+document.getElementById("resetTexts").addEventListener("click", function(){
+  if (!confirm("Reset all text back to the original? Your saved edits will be removed.")) return;
+  editableEls.forEach(function(el){ localStorage.removeItem(TEXT_PREFIX + el.dataset.editKey); });
+  editStatus.textContent = "Text reset — reloading…";
+  setTimeout(function(){ location.reload(); }, 500);
+});
+
+/* ---------- Mobile navigation menu ---------- */
+const navToggle = document.getElementById("navToggle");
+const navLinks  = document.getElementById("navLinks");
+navToggle.addEventListener("click", function(){
+  const open = navLinks.classList.toggle("open");
+  navToggle.classList.toggle("open", open);
+  navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+});
+navLinks.querySelectorAll("a").forEach(function(a){
+  a.addEventListener("click", function(){
+    navLinks.classList.remove("open");
+    navToggle.classList.remove("open");
+    navToggle.setAttribute("aria-expanded", "false");
+  });
+});
+
+/* ---------- Eye icon: master toggle for all editing tools ---------- */
+const adminEye = document.getElementById("adminEye");
+adminEye.addEventListener("click", function(){
+  const on = document.body.classList.toggle("admin-on");
+  adminEye.classList.toggle("active", on);
+  adminEye.title = on ? "Hide editing tools" : "Show editing tools";
+  if (!on) setEditMode(false);   // also leave text-edit mode when hiding
+});
+</script>
+
+</body>
+</html>
