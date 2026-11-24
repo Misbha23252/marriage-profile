@@ -258,17 +258,16 @@ body.edit-on [data-edit-key]:focus{outline:2px solid var(--gold);background:rgba
       </p>
     </div>
 
-    <!-- Replace the placeholder below with your main photo -->
     <div class="photo-editor">
       <label class="hero-photo upload-photo" for="mainPhoto">
         <input id="mainPhoto" type="file" accept="image/*" hidden>
-        <div class="photo-placeholder"><span class="upload-plus">+</span><br>ADD MAIN PHOTO<br><small>Click to choose a photo</small></div>
+        <img src="photos/IMG_4160.jpg" alt="Misbha K">
       </label>
       <div class="photo-actions">
         <button type="button" class="photo-btn save-btn" id="saveMainPhoto">Save Photo</button>
-        <button type="button" class="photo-btn remove-btn" id="removeMainPhoto">Remove</button>
+        <button type="button" class="photo-btn remove-btn" id="removeMainPhoto">Restore published</button>
       </div>
-      <div class="save-status" id="mainPhotoStatus">No saved photo</div>
+      <div class="save-status" id="mainPhotoStatus">Published photo — visible to everyone</div>
     </div>
   </div>
 </header>
@@ -353,55 +352,55 @@ body.edit-on [data-edit-key]:focus{outline:2px solid var(--gold);background:rgba
     <div class="section-head">
       <div class="kicker" data-edit-key="gallery-kicker">Photo Gallery</div>
       <h2 data-edit-key="gallery-title">Moments</h2>
-      <p class="subtitle" data-edit-key="gallery-subtitle">Add a few selected photographs here. The layout automatically adapts to mobile screens.</p>
+      <p class="subtitle" data-edit-key="gallery-subtitle">A few selected photographs. The layout automatically adapts to mobile screens.</p>
     </div>
     <div class="gallery" id="galleryGrid">
       <div class="gallery-card">
         <label class="gallery-item upload-slot" for="galleryPhoto1">
           <input id="galleryPhoto1" type="file" accept="image/*" hidden>
-          <span><b>+</b> Add Photo</span>
+          <img src="photos/IMG_4158.jpg" alt="Misbha K — gallery photo 1" loading="lazy">
         </label>
         <div class="photo-actions compact">
           <button type="button" class="photo-btn save-btn gallery-save" data-index="1">Save</button>
-          <button type="button" class="photo-btn remove-btn gallery-remove" data-index="1">Remove</button>
+          <button type="button" class="photo-btn remove-btn gallery-remove" data-index="1">Restore published</button>
         </div>
-        <div class="save-status gallery-status" id="galleryStatus1">Not saved</div>
+        <div class="save-status gallery-status" id="galleryStatus1">Published photo — visible to everyone</div>
       </div>
       <div class="gallery-card">
         <label class="gallery-item upload-slot" for="galleryPhoto2">
           <input id="galleryPhoto2" type="file" accept="image/*" hidden>
-          <span><b>+</b> Add Photo</span>
+          <img src="photos/IMG_4159.jpg" alt="Misbha K — gallery photo 2" loading="lazy">
         </label>
         <div class="photo-actions compact">
           <button type="button" class="photo-btn save-btn gallery-save" data-index="2">Save</button>
-          <button type="button" class="photo-btn remove-btn gallery-remove" data-index="2">Remove</button>
+          <button type="button" class="photo-btn remove-btn gallery-remove" data-index="2">Restore published</button>
         </div>
-        <div class="save-status gallery-status" id="galleryStatus2">Not saved</div>
+        <div class="save-status gallery-status" id="galleryStatus2">Published photo — visible to everyone</div>
       </div>
       <div class="gallery-card">
         <label class="gallery-item upload-slot" for="galleryPhoto3">
           <input id="galleryPhoto3" type="file" accept="image/*" hidden>
-          <span><b>+</b> Add Photo</span>
+          <img src="photos/IMG_4161.jpg" alt="Misbha K — gallery photo 3" loading="lazy">
         </label>
         <div class="photo-actions compact">
           <button type="button" class="photo-btn save-btn gallery-save" data-index="3">Save</button>
-          <button type="button" class="photo-btn remove-btn gallery-remove" data-index="3">Remove</button>
+          <button type="button" class="photo-btn remove-btn gallery-remove" data-index="3">Restore published</button>
         </div>
-        <div class="save-status gallery-status" id="galleryStatus3">Not saved</div>
+        <div class="save-status gallery-status" id="galleryStatus3">Published photo — visible to everyone</div>
       </div>
       <div class="gallery-card">
         <label class="gallery-item upload-slot" for="galleryPhoto4">
           <input id="galleryPhoto4" type="file" accept="image/*" hidden>
-          <span><b>+</b> Add Photo</span>
+          <img src="photos/IMG_4160.jpg" alt="Misbha K — gallery photo 4" loading="lazy">
         </label>
         <div class="photo-actions compact">
           <button type="button" class="photo-btn save-btn gallery-save" data-index="4">Save</button>
-          <button type="button" class="photo-btn remove-btn gallery-remove" data-index="4">Remove</button>
+          <button type="button" class="photo-btn remove-btn gallery-remove" data-index="4">Restore published</button>
         </div>
-        <div class="save-status gallery-status" id="galleryStatus4">Not saved</div>
+        <div class="save-status gallery-status" id="galleryStatus4">Published photo — visible to everyone</div>
       </div>
     </div>
-    <p class="photo-note">Click any “Add Photo” box to select a picture from your device.</p>
+    <p class="photo-note">Published photos are visible to everyone. Editing tools save replacements only in your browser, not to the public website.</p>
   </div>
 </section>
 
@@ -507,8 +506,12 @@ async function preparePhoto(file) {
 }
 
 function deleteSaved(key) {
-  try { localStorage.removeItem(STORAGE_PREFIX + key); }
-  catch(e) {}
+  try { localStorage.removeItem(STORAGE_PREFIX + key); return true; }
+  catch(e) {
+    console.error("Could not remove local photo", e);
+    alert("The browser could not remove the local photo. Allow site storage and try again.");
+    return false;
+  }
 }
 
 function setImage(target, url) {
@@ -519,17 +522,9 @@ function setImage(target, url) {
   target.classList.add("has-photo");
 }
 
-function resetSlot(target, label) {
-  const placeholder = document.createElement("span");
-  const plus = document.createElement("b");
-  plus.textContent = "+";
-  placeholder.append(plus, " " + label);
-  target.replaceChildren(target.querySelector('input[type="file"]'), placeholder);
-  target.classList.remove("has-photo");
-}
-
-function setupPhoto(inputId, target, saveButton, removeButton, status, key, label) {
+function setupPhoto(inputId, target, saveButton, removeButton, status, key) {
   const input = document.getElementById(inputId);
+  const publishedPhoto = target.querySelector("img").getAttribute("src");
   let selection = 0;
 
   input.addEventListener("change", async function() {
@@ -570,13 +565,16 @@ function setupPhoto(inputId, target, saveButton, removeButton, status, key, labe
   });
 
   removeButton.addEventListener("click", function() {
+    if (!deleteSaved(key)) {
+      status.textContent = "Could not restore published photo — check browser storage";
+      return;
+    }
     selection++;
     saveButton.disabled = false;
-    deleteSaved(key);
     delete target.dataset.pending;
     input.value = "";
-    resetSlot(target, label);
-    status.textContent = "Photo removed";
+    setImage(target, publishedPhoto);
+    status.textContent = "Published photo restored";
   });
 
   const saved = readSaved(key);
@@ -593,8 +591,7 @@ setupPhoto(
   document.getElementById("saveMainPhoto"),
   document.getElementById("removeMainPhoto"),
   document.getElementById("mainPhotoStatus"),
-  "main",
-  "ADD MAIN PHOTO"
+  "main"
 );
 
 for (let i = 1; i <= 4; i++) {
@@ -604,8 +601,7 @@ for (let i = 1; i <= 4; i++) {
     document.querySelector('.gallery-save[data-index="' + i + '"]'),
     document.querySelector('.gallery-remove[data-index="' + i + '"]'),
     document.getElementById("galleryStatus" + i),
-    "gallery-" + i,
-    "Add Photo"
+    "gallery-" + i
   );
 }
 
