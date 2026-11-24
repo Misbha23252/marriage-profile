@@ -1,4 +1,4 @@
-MISBHA K - MARRIAGE PROPOSAL WEBSITE
+MOHAMMED MISBHA K - MARRIAGE PROPOSAL WEBSITE
 
 SHOWING / HIDING THE EDITING TOOLS (eye icon)
 - All editing tools are hidden by default so visitors see a clean website.
