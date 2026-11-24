@@ -19,6 +19,10 @@ PHOTO MANAGEMENT (with the eye icon ON)
 - Photos of any dimensions fill their frame; edges may be cropped to fit.
 - The gallery uses four columns on desktop, two on tablets, and one on small phones.
 - Click Add Photo to select an image.
+- Large photos are automatically resized (up to 1600 pixels on the longest side)
+  and compressed before saving. Small photos are not enlarged.
+- Saved copies use JPEG; transparent areas become white and animations become stills.
+- Wait for "Photo ready", then click Save. Originals on your device are unchanged.
 - Click Save to persist it in the browser.
 - Reopen the same website on the same browser/device and the saved photos remain.
 - Click Remove to delete a saved photo.
