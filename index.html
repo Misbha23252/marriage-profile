@@ -52,10 +52,10 @@ h1{font-size:clamp(60px,9vw,105px);line-height:.85;margin:18px 0}
   border:7px solid rgba(255,255,255,.9);
   box-shadow:0 25px 70px rgba(0,0,0,.22);
   display:flex;align-items:center;justify-content:center;
-  color:#777;font-size:13px;text-align:center;padding:25px;
-  overflow:hidden;
+  color:#777;font-size:13px;text-align:center;padding:0;
+  overflow:hidden;position:relative;
 }
-.hero-photo img{width:100%;height:100%;object-fit:cover}
+.hero-photo img,.gallery-item img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
 .upload-photo{cursor:pointer;position:relative}
 .upload-photo:hover{transform:translateY(-2px)}
 .upload-plus,.upload-slot b{font-family:Inter,Arial,sans-serif;font-size:34px;font-weight:400;line-height:1;color:var(--gold)}
@@ -101,10 +101,9 @@ h2{font-size:52px;color:var(--green);margin:7px 0}
 .family-card p{margin:2px;color:var(--muted);font-size:14px}
 .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .gallery-item{
-  aspect-ratio:1/1;border-radius:16px;overflow:hidden;background:#e9e3d8;
+  aspect-ratio:1/1;border-radius:16px;overflow:hidden;background:#e9e3d8;position:relative;
   display:flex;align-items:center;justify-content:center;color:#777;font-size:12px;
 }
-.gallery-item:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:1/1}
 .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .gallery-item:hover img{transform:scale(1.04)}
 .values{
@@ -126,7 +125,7 @@ footer{padding:35px 0;text-align:center;color:var(--muted);font-size:12px;border
   .hero-inner{gap:45px}
   h1{font-size:clamp(52px,10vw,86px)}
   h2{font-size:46px}
-  .gallery{grid-template-columns:repeat(3,1fr)}
+  .gallery{grid-template-columns:repeat(2,1fr)}
 }
 
 /* ---- Mobile ---- */
@@ -150,7 +149,6 @@ footer{padding:35px 0;text-align:center;color:var(--muted);font-size:12px;border
   section{padding:70px 0}
   .details,.family-grid{grid-template-columns:1fr}
   .gallery{grid-template-columns:repeat(2,1fr)}
-  .gallery-item:first-child{grid-column:span 2}
   .quote{font-size:27px}
   .edit-savebar .hint{display:none}
   .edit-controls{right:14px;bottom:14px}
@@ -168,7 +166,6 @@ footer{padding:35px 0;text-align:center;color:var(--muted);font-size:12px;border
   .contact-box{padding:32px 22px}
   .quote{font-size:23px}
   .gallery{grid-template-columns:1fr}
-  .gallery-item:first-child{grid-column:span 1}
   .nav-inner{height:58px}
   .logo{font-size:22px}
   .edit-savebar{gap:8px;padding:11px 12px}
@@ -403,28 +400,6 @@ body.edit-on [data-edit-key]:focus{outline:2px solid var(--gold);background:rgba
         </div>
         <div class="save-status gallery-status" id="galleryStatus4">Not saved</div>
       </div>
-      <div class="gallery-card">
-        <label class="gallery-item upload-slot" for="galleryPhoto5">
-          <input id="galleryPhoto5" type="file" accept="image/*" hidden>
-          <span><b>+</b> Add Photo</span>
-        </label>
-        <div class="photo-actions compact">
-          <button type="button" class="photo-btn save-btn gallery-save" data-index="5">Save</button>
-          <button type="button" class="photo-btn remove-btn gallery-remove" data-index="5">Remove</button>
-        </div>
-        <div class="save-status gallery-status" id="galleryStatus5">Not saved</div>
-      </div>
-      <div class="gallery-card">
-        <label class="gallery-item upload-slot" for="galleryPhoto6">
-          <input id="galleryPhoto6" type="file" accept="image/*" hidden>
-          <span><b>+</b> Add Photo</span>
-        </label>
-        <div class="photo-actions compact">
-          <button type="button" class="photo-btn save-btn gallery-save" data-index="6">Save</button>
-          <button type="button" class="photo-btn remove-btn gallery-remove" data-index="6">Remove</button>
-        </div>
-        <div class="save-status gallery-status" id="galleryStatus6">Not saved</div>
-      </div>
     </div>
     <p class="photo-note">Click any “Add Photo” box to select a picture from your device.</p>
   </div>
@@ -499,12 +474,19 @@ function deleteSaved(key) {
 }
 
 function setImage(target, url) {
-  target.innerHTML = '<img src="' + url + '" alt="Selected photo">';
+  const image = document.createElement("img");
+  image.src = url;
+  image.alt = "Selected photo";
+  target.replaceChildren(target.querySelector('input[type="file"]'), image);
   target.classList.add("has-photo");
 }
 
 function resetSlot(target, label) {
-  target.innerHTML = '<span><b>+</b> ' + label + '</span>';
+  const placeholder = document.createElement("span");
+  const plus = document.createElement("b");
+  plus.textContent = "+";
+  placeholder.append(plus, " " + label);
+  target.replaceChildren(target.querySelector('input[type="file"]'), placeholder);
   target.classList.remove("has-photo");
 }
 
@@ -562,7 +544,7 @@ setupPhoto(
   "ADD MAIN PHOTO"
 );
 
-for (let i = 1; i <= 6; i++) {
+for (let i = 1; i <= 4; i++) {
   setupPhoto(
     "galleryPhoto" + i,
     document.querySelector("#galleryPhoto" + i).closest(".gallery-item"),

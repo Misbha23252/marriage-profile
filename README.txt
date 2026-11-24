@@ -15,6 +15,9 @@ TEXT EDITING (About, Family, Gallery, Values, Contact, Hero)
 - Click "Reset All" to restore the original text.
 
 PHOTO MANAGEMENT (with the eye icon ON)
+- There is one main photo frame and four gallery frames.
+- Photos of any dimensions fill their frame; edges may be cropped to fit.
+- The gallery uses four columns on desktop, two on tablets, and one on small phones.
 - Click Add Photo to select an image.
 - Click Save to persist it in the browser.
 - Reopen the same website on the same browser/device and the saved photos remain.
